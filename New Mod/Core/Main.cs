@@ -103,6 +103,20 @@ public class Main : MonoBehaviour
         );
 
         GUILayout.Label($"Current input: {InputSelector.InputNames[InputSelector.SelectedIndex]}");
+        GUILayout.Space(5f);
+        GUILayout.Label("Presets:");
+        if (GUILayout.Button("Speed Boost Setting: (25)", Buttonss))
+        {
+            pullPower = 25f;
+        }
+        if (GUILayout.Button("Max Setting: (70)", Buttonss))
+        {
+            pullPower = 70f;
+        }
+        if (GUILayout.Button("Reset", Buttonss))
+        {
+            pullPower = 0f;
+        }
 
     }
 
