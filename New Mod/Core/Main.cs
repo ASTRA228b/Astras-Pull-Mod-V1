@@ -9,7 +9,7 @@ namespace Astras_PullMod.Core;
 
 public class Main : MonoBehaviour
 {
-    private Rect Window = new Rect(150, 150, 360, 420);
+    private Rect Window = new Rect(155, 155, 360, 460);
     private bool Open = false;
     private bool StylesLoded = false;
     private Texture2D? Windowtex, Background, Slidertex, SliderThumbtex;
@@ -115,7 +115,7 @@ public class Main : MonoBehaviour
         }
         if (GUILayout.Button("Reset", Buttonss))
         {
-            pullPower = 0f;
+            pullPower = 0.001f;
         }
 
     }
