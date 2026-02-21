@@ -12,6 +12,7 @@ public class Main : MonoBehaviour
     private Rect Window = new Rect(155, 155, 360, 460);
     private bool Open = false;
     private bool StylesLoded = false;
+    private bool dropdownOpen = false;
     private Texture2D? Windowtex, Background, Slidertex, SliderThumbtex;
     private GUIStyle? WindowStyle, Buttonss, SliderStyle, SliderThumbStyle;
     private Color WindowColor = new Color(0.1f, 0.1f, 0.1f, 1f);
@@ -77,6 +78,7 @@ public class Main : MonoBehaviour
         }
         if (Open)
         {
+            Window.height = dropdownOpen ? 520 : 460;
             Window = GUILayout.Window(987065, Window, UIM, "Astras PullMod V1", WindowStyle);
         }
     }
@@ -102,12 +104,15 @@ public class Main : MonoBehaviour
 
         GUILayout.Label("Change Input:");
 
+        int oldIndex = InputSelector.SelectedIndex;
         InputSelector.SelectedIndex = MenuLib.Dropdown(
             "pullmod_input",
             InputSelector.InputNames,
             InputSelector.SelectedIndex,
             GUILayout.Width(200)
         );
+
+        dropdownOpen = oldIndex != InputSelector.SelectedIndex;
 
         GUILayout.Label($"Current input: {InputSelector.InputNames[InputSelector.SelectedIndex]}");
         GUILayout.Space(5f);
