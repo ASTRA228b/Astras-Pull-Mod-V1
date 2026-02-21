@@ -9,7 +9,7 @@ namespace Astras_PullMod.Core;
 
 public class Main : MonoBehaviour
 {
-    private Rect Window = new Rect(150, 150, 260, 300);
+    private Rect Window = new Rect(150, 150, 360, 400);
     private bool Open = false;
     private bool StylesLoded = false;
     private Texture2D? Windowtex, Background, Slidertex, SliderThumbtex;
