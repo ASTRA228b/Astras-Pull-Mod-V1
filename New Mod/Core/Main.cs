@@ -9,7 +9,7 @@ namespace Astras_PullMod.Core;
 
 public class Main : MonoBehaviour
 {
-    private Rect Window = new Rect(150, 150, 360, 400);
+    private Rect Window = new Rect(150, 150, 360, 420);
     private bool Open = false;
     private bool StylesLoded = false;
     private Texture2D? Windowtex, Background, Slidertex, SliderThumbtex;
@@ -107,11 +107,11 @@ public class Main : MonoBehaviour
         GUILayout.Label("Presets:");
         if (GUILayout.Button("Speed Boost Setting: (25)", Buttonss))
         {
-            pullPower = 25f;
+            pullPower = 0.025f;
         }
         if (GUILayout.Button("Max Setting: (70)", Buttonss))
         {
-            pullPower = 70f;
+            pullPower = 0.070f;
         }
         if (GUILayout.Button("Reset", Buttonss))
         {
