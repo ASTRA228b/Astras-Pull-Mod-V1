@@ -21,6 +21,13 @@ public class Main : MonoBehaviour
     private static float pullPower = 0f;
     private static bool lasttouchleft;
     private static bool lasttouchright;
+    public enum HandPullMode
+    {
+        Left,
+        Right,
+        Both
+    }
+    public static HandPullMode CurrentMode = HandPullMode.Both;
 
     private void OnGUI()
     {
@@ -117,29 +124,70 @@ public class Main : MonoBehaviour
         {
             pullPower = 0.001f;
         }
+        GUILayout.Space(5f);
+        GUILayout.Label("Hand Options:");
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Toggle(CurrentMode == HandPullMode.Both, "Both"))
+        {
+            CurrentMode = HandPullMode.Both;
+        }
+        GUILayout.Space(5f);
+        if (GUILayout.Toggle(CurrentMode == HandPullMode.Left, "Left"))
+        {
+            CurrentMode = HandPullMode.Left;
+        }
+        GUILayout.Space(5f);
+        if (GUILayout.Toggle(CurrentMode == HandPullMode.Right, "Right"))
+        {
+            CurrentMode = HandPullMode.Right;
+        }
+     
 
+        GUILayout.EndHorizontal();
+        GUILayout.Label("PullMode: " + CurrentMode.ToString());
     }
 
 
     private void Update()
     {
-        PullMod();
+
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
             Open = !Open;
         }
     }
+    private void FixedUpdate()
+    {
+        PullMod();
+    }
 
     // PullMod
     public static void PullMod()
     {
-        if (((!GTPlayer.Instance.IsHandTouching(true) && lasttouchleft) || (!GTPlayer.Instance.IsHandTouching(false) && lasttouchright)) && InputSelector.Pressed)
+        bool leftTouching = GTPlayer.Instance.IsHandTouching(true);
+        bool rightTouching = GTPlayer.Instance.IsHandTouching(false);
+        bool leftReleased = !leftTouching && lasttouchleft;
+        bool rightReleased = !rightTouching && lasttouchright;
+
+        if (InputSelector.Pressed)
         {
-            Vector3 vel = GorillaTagger.Instance.rigidbody.linearVelocity;
-            GTPlayer.Instance.transform.position += new Vector3(vel.x * pullPower, 0f, vel.z * pullPower);
+            bool shouldPull = CurrentMode switch
+            {
+                HandPullMode.Left => leftReleased,
+                HandPullMode.Right => rightReleased,
+                HandPullMode.Both => leftReleased || rightReleased,
+                _ => false
+            };
+
+            if (shouldPull)
+            {
+                Vector3 vel = GorillaTagger.Instance.rigidbody.linearVelocity;
+                GTPlayer.Instance.transform.position += new Vector3(vel.x * pullPower, 0f, vel.z * pullPower);
+            }
         }
-        lasttouchleft = GTPlayer.Instance.IsHandTouching(true);
-        lasttouchright = GTPlayer.Instance.IsHandTouching(false);
+
+        lasttouchleft = leftTouching;
+        lasttouchright = rightTouching;
     }
 
 

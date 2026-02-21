@@ -1,4 +1,5 @@
-﻿
+﻿using Valve.VR;
+
 namespace Astras_PullMod.Librarys;
 
 internal class InputLib
@@ -16,4 +17,19 @@ internal class InputLib
     // X
     public static bool LeftControllerXButton => ControllerInputPoller.instance.leftControllerSecondaryButton;
     // Note: on the htc vive wands both L/R The one button counts for both SecondaryButtons and PrimaryButtons
+    // Joystick Stuff
+    public static bool RightJoystickClick
+    {
+        get
+        {
+            return SteamVR_Actions.gorillaTag_LeftJoystickClick.state;
+        }
+    }
+    public static bool LeftJoystickClick
+    {
+        get
+        {
+            return SteamVR_Actions.gorillaTag_RightJoystickClick.state;
+        }
+    }
 }
