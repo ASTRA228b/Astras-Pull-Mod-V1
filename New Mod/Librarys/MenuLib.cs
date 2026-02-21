@@ -1,23 +1,22 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
+
+namespace Astras_PullMod.Librarys;
 
 public static class MenuLib
 {
     private static Dictionary<string, bool> dropdownStates = new Dictionary<string, bool>();
 
     private static GUIStyle? mainButton, optionButton, boxStyle;
-    private static Texture2D? MainBTex, OptionBTex;
+    private static Texture2D? MainBTex;
     private static Color ButtonColor = new Color(0.2f, 0.2f, 0.2f, 1f);
     private static void Init()
     {
         if (mainButton != null) return;
-        MainBTex = MakeTex(1, 1, ButtonColor);
-        OptionBTex = MakeTex(1, 1, ButtonColor);
 
+        MainBTex = MakeTex(1, 1, ButtonColor);
         mainButton = new GUIStyle(GUI.skin.button);
         mainButton.fontSize = 14;
-        mainButton.fixedHeight = 30;
+        mainButton.fixedHeight = 25;
         mainButton.normal.background = MainBTex;
         mainButton.active.background = MainBTex;
         mainButton.hover.background = MainBTex;
@@ -37,14 +36,14 @@ public static class MenuLib
         optionButton = new GUIStyle(GUI.skin.button);
         optionButton.fontSize = 12;
         optionButton.fixedHeight = 22;
-        optionButton.normal.background = OptionBTex;
-        optionButton.active.background = OptionBTex;
-        optionButton.hover.background = OptionBTex;
-        optionButton.focused.background = OptionBTex;
-        optionButton.onNormal.background = OptionBTex;
-        optionButton.onActive.background = OptionBTex;
-        optionButton.onHover.background = OptionBTex;
-        optionButton.onFocused.background = OptionBTex;
+        optionButton.normal.background = MainBTex;
+        optionButton.active.background = MainBTex;
+        optionButton.hover.background = MainBTex;
+        optionButton.focused.background = MainBTex;
+        optionButton.onNormal.background = MainBTex;
+        optionButton.onActive.background = MainBTex;
+        optionButton.onHover.background = MainBTex;
+        optionButton.onFocused.background = MainBTex;
         optionButton.normal.textColor = Color.white;
         optionButton.hover.textColor = Color.blue;
         optionButton.active.textColor = Color.red;
