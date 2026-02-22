@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 
 
+
 namespace Astras_PullMod.Core;
 
 public class Main : MonoBehaviour
@@ -97,7 +98,7 @@ public class Main : MonoBehaviour
     private void Mod()
     {
         GUILayout.Label("Change PullSpeed:");
-        pullPower = GUILayout.HorizontalSlider(pullPower, 0.001f, 0.070f, SliderStyle, SliderThumbStyle);
+        pullPower = GUILayout.HorizontalSlider(pullPower, 0.001f, 0.200f, SliderStyle, SliderThumbStyle);
         GUILayout.Label($"Speed set to {pullPower:F3}");
 
         GUILayout.Space(5f);
@@ -121,9 +122,14 @@ public class Main : MonoBehaviour
         {
             pullPower = 0.025f;
         }
-        if (GUILayout.Button("Max Setting: (70)", Buttonss))
+        if (GUILayout.Button("Legit Setting: (70)", Buttonss))
         {
             pullPower = 0.070f;
+        }
+        if (GUILayout.Button("Random Setting", Buttonss))
+        {
+            float RandomSetting = UnityEngine.Random.Range(0.001f, 0.200f);
+            pullPower *= RandomSetting;
         }
         if (GUILayout.Button("Reset", Buttonss))
         {
