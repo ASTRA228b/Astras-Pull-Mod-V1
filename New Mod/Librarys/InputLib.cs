@@ -25,7 +25,7 @@ internal class InputLib
             if (SteamVR_Actions.gorillaTag_RightJoystickClick == null)
                 return false;
 
-            return SteamVR_Actions.gorillaTag_RightJoystickClick.stateDown;
+            return SteamVR_Actions.gorillaTag_RightJoystickClick.state;
         }
     }
 
@@ -36,7 +36,7 @@ internal class InputLib
             if (SteamVR_Actions.gorillaTag_LeftJoystickClick == null)
                 return false;
 
-            return SteamVR_Actions.gorillaTag_LeftJoystickClick.stateDown;
+            return SteamVR_Actions.gorillaTag_LeftJoystickClick.state;
         }
     }
 }
