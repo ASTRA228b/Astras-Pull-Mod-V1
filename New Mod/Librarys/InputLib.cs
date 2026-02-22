@@ -22,18 +22,21 @@ internal class InputLib
     {
         get
         {
-            if (SteamVR_Actions.gorillaTag_LeftJoystickClick == null)
+            if (SteamVR_Actions.gorillaTag_RightJoystickClick == null)
                 return false;
-            return SteamVR_Actions.gorillaTag_LeftJoystickClick.state;
+
+            return SteamVR_Actions.gorillaTag_RightJoystickClick.state;
         }
     }
+
     public static bool LeftJoystickClick
     {
         get
         {
-            if (SteamVR_Actions.gorillaTag_RightJoystickClick == null)
+            if (SteamVR_Actions.gorillaTag_LeftJoystickClick == null)
                 return false;
-            return SteamVR_Actions.gorillaTag_RightJoystickClick.state;
+
+            return SteamVR_Actions.gorillaTag_LeftJoystickClick.state;
         }
     }
 }
