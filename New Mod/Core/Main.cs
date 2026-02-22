@@ -129,7 +129,7 @@ public class Main : MonoBehaviour
         if (GUILayout.Button("Random Setting", Buttonss))
         {
             float RandomSetting = UnityEngine.Random.Range(0.001f, 0.200f);
-            pullPower *= RandomSetting;
+            pullPower = RandomSetting;
         }
         if (GUILayout.Button("Reset", Buttonss))
         {
