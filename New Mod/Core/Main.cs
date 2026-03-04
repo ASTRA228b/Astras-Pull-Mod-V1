@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 
 
-
 namespace Astras_PullMod.Core;
 
 public class Main : MonoBehaviour
@@ -23,6 +22,9 @@ public class Main : MonoBehaviour
     private static float pullPower = 0f;
     private static bool lasttouchleft;
     private static bool lasttouchright;
+    private float SpeedValue = 8.5f;
+    private float Normalmuilty = 1.5f;
+    private bool Speed = false;
     public enum HandPullMode
     {
         Left,
@@ -156,6 +158,13 @@ public class Main : MonoBehaviour
 
         GUILayout.EndHorizontal();
         GUILayout.Label("PullMode: " + CurrentMode.ToString());
+        GUILayout.Label("Good Astra Client Speed Boost");
+        Speed = GUILayout.Toggle(Speed, "Speed Boost (Good For Set 0.025)");
+        if (Speed)
+        {
+            GTPlayer.Instance.jumpMultiplier = Normalmuilty;
+            GTPlayer.Instance.maxJumpSpeed = SpeedValue;
+        }
     }
 
 
