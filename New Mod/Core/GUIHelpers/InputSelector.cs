@@ -1,4 +1,6 @@
-﻿namespace Astras_PullMod.Librarys;
+﻿using Astras_PullMod.Librarys;
+
+namespace Astras_Pull_Mod_V1.Core.GUIHelpers;
 
 public static class InputSelector
 {

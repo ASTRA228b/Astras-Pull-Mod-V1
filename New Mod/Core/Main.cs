@@ -1,4 +1,4 @@
-﻿using Astras_PullMod.Librarys;
+﻿using Astras_Pull_Mod_V1.Core.GUIHelpers;
 using GorillaLocomotion;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,46 +37,7 @@ public class Main : MonoBehaviour
     {
         if (!StylesLoded)
         {
-            Windowtex = MakeTex(1, 1, WindowColor);
-            Background = MakeTex(1, 1, ButtonColor);
-            Slidertex = MakeTex(1, 1, sliderTrackColor);
-            SliderThumbtex = MakeTex(1, 1, sliderThumbColor);
-            WindowStyle = new GUIStyle(GUI.skin.window);
-            WindowStyle.normal.background = Windowtex;
-            WindowStyle.hover.background = Windowtex;
-            WindowStyle.active.background = Windowtex;
-            WindowStyle.focused.background = Windowtex;
-            WindowStyle.onNormal.background = Windowtex;
-            WindowStyle.onHover.background = Windowtex;
-            WindowStyle.onActive.background = Windowtex;
-            WindowStyle.onFocused.background = Windowtex;
-            WindowStyle.normal.textColor = Color.white;
-            WindowStyle.fontStyle = FontStyle.Normal;
-            Buttonss = new GUIStyle(GUI.skin.button);
-            Buttonss.normal.background = Background;
-            Buttonss.active.background = Background;
-            Buttonss.hover.background = Background;
-            Buttonss.focused.background = Background;
-            Buttonss.onNormal.background = Background;
-            Buttonss.onActive.background = Background;
-            Buttonss.onHover.background = Background;
-            Buttonss.onFocused.background = Background;
-            Buttonss.normal.textColor = Color.white;
-            Buttonss.hover.textColor = Color.blue;
-            Buttonss.active.textColor = Color.red;
-            Buttonss.focused.textColor = Color.white;
-            Buttonss.onNormal.textColor = Color.blue;
-            Buttonss.onHover.textColor = Color.blue;
-            Buttonss.onActive.textColor = Color.blue;
-            Buttonss.onFocused.textColor = Color.blue;
-            SliderStyle = new GUIStyle(GUI.skin.horizontalSlider);
-            SliderThumbStyle = new GUIStyle(GUI.skin.horizontalSliderThumb);
-            SliderStyle.normal.background = Slidertex;
-            SliderStyle.active.background = Slidertex;
-            SliderStyle.hover.background = Slidertex;
-            SliderThumbStyle.normal.background = SliderThumbtex;
-            SliderThumbStyle.active.background = SliderThumbtex;
-            SliderThumbStyle.hover.background = SliderThumbtex;
+            INIT();
             StylesLoded = true;
         }
         if (Open)
@@ -154,7 +115,7 @@ public class Main : MonoBehaviour
         {
             CurrentMode = HandPullMode.Right;
         }
-     
+
 
         GUILayout.EndHorizontal();
         GUILayout.Label("PullMode: " + CurrentMode.ToString());
@@ -210,14 +171,48 @@ public class Main : MonoBehaviour
         lasttouchright = rightTouching;
     }
 
-
-
-
-    private Texture2D MakeTex(int WW, int HH, Color Col)
+    private void INIT()
     {
-        Texture2D VALL = new Texture2D(WW, HH);
-        VALL.SetPixel(0, 0, Col);
-        VALL.Apply();
-        return VALL;
+        Windowtex = Texturing.MakeTextures(1, 1, WindowColor);
+        Background = Texturing.MakeTextures(1, 1, ButtonColor);
+        Slidertex = Texturing.MakeTextures(1, 1, sliderTrackColor);
+        SliderThumbtex = Texturing.MakeTextures(1, 1, sliderThumbColor);
+        WindowStyle = new GUIStyle(GUI.skin.window);
+        WindowStyle.normal.background = Windowtex;
+        WindowStyle.hover.background = Windowtex;
+        WindowStyle.active.background = Windowtex;
+        WindowStyle.focused.background = Windowtex;
+        WindowStyle.onNormal.background = Windowtex;
+        WindowStyle.onHover.background = Windowtex;
+        WindowStyle.onActive.background = Windowtex;
+        WindowStyle.onFocused.background = Windowtex;
+        WindowStyle.normal.textColor = Color.white;
+        WindowStyle.fontStyle = FontStyle.Normal;
+        Buttonss = new GUIStyle(GUI.skin.button);
+        Buttonss.normal.background = Background;
+        Buttonss.active.background = Background;
+        Buttonss.hover.background = Background;
+        Buttonss.focused.background = Background;
+        Buttonss.onNormal.background = Background;
+        Buttonss.onActive.background = Background;
+        Buttonss.onHover.background = Background;
+        Buttonss.onFocused.background = Background;
+        Buttonss.normal.textColor = Color.white;
+        Buttonss.hover.textColor = Color.blue;
+        Buttonss.active.textColor = Color.red;
+        Buttonss.focused.textColor = Color.white;
+        Buttonss.onNormal.textColor = Color.blue;
+        Buttonss.onHover.textColor = Color.blue;
+        Buttonss.onActive.textColor = Color.blue;
+        Buttonss.onFocused.textColor = Color.blue;
+        SliderStyle = new GUIStyle(GUI.skin.horizontalSlider);
+        SliderThumbStyle = new GUIStyle(GUI.skin.horizontalSliderThumb);
+        SliderStyle.normal.background = Slidertex;
+        SliderStyle.active.background = Slidertex;
+        SliderStyle.hover.background = Slidertex;
+        SliderThumbStyle.normal.background = SliderThumbtex;
+        SliderThumbStyle.active.background = SliderThumbtex;
+        SliderThumbStyle.hover.background = SliderThumbtex;
     }
+
 }

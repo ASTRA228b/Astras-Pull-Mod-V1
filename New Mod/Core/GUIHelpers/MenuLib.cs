@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Astras_PullMod.Librarys;
+namespace Astras_Pull_Mod_V1.Core.GUIHelpers;
 
 public static class MenuLib
 {
@@ -13,7 +13,7 @@ public static class MenuLib
     {
         if (mainButton != null) return;
 
-        MainBTex = MakeTex(1, 1, ButtonColor);
+        MainBTex = Texturing.MakeTextures(1, 1, ButtonColor);
         mainButton = new GUIStyle(GUI.skin.button);
         mainButton.fontSize = 14;
         mainButton.fixedHeight = 25;
@@ -86,12 +86,5 @@ public static class MenuLib
         }
 
         return selectedIndex;
-    }
-    private static Texture2D MakeTex(int WW, int HH, Color Col)
-    {
-        Texture2D VALL = new Texture2D(WW, HH);
-        VALL.SetPixel(0, 0, Col);
-        VALL.Apply();
-        return VALL;
     }
 }
