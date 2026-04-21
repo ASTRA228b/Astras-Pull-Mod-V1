@@ -20,6 +20,7 @@ public class Main : MonoBehaviour
     private Color sliderTrackColor = new Color(0.15f, 0.15f, 0.15f, 1f);
     private Color sliderThumbColor = new Color(0.0f, 0.6f, 1f, 1f);
     private static float pullPower = 0f;
+    private static float UpHillPull = 0f;
     private static bool lasttouchleft;
     private static bool lasttouchright;
     private float SpeedValue = 8.5f;
@@ -61,9 +62,11 @@ public class Main : MonoBehaviour
     private void Mod()
     {
         GUILayout.Label("Change PullSpeed:");
-        pullPower = GUILayout.HorizontalSlider(pullPower, 0.001f, 0.200f, SliderStyle, SliderThumbStyle);
+        pullPower = GUILayout.HorizontalSlider(pullPower, 0.001f, 0.2f, SliderStyle, SliderThumbStyle);
         GUILayout.Label($"Speed set to {pullPower:F3}");
-
+        GUILayout.Label("Change UphillPower:");
+        UpHillPull = GUILayout.HorizontalSlider(UpHillPull, 0.001f, 0.1f, SliderStyle, SliderThumbStyle);
+        GUILayout.Label($"Uphill set to {UpHillPull:F3}");
         GUILayout.Space(5f);
 
         GUILayout.Label("Change Input:");
@@ -84,19 +87,22 @@ public class Main : MonoBehaviour
         if (GUILayout.Button("Speed Boost Setting: (25)", Buttonss))
         {
             pullPower = 0.025f;
+            UpHillPull = 0.020f;
         }
         if (GUILayout.Button("Legit Setting: (70)", Buttonss))
         {
             pullPower = 0.070f;
+            UpHillPull = 0.065f;
         }
         if (GUILayout.Button("Random Setting", Buttonss))
         {
-            float RandomSetting = UnityEngine.Random.Range(0.001f, 0.200f);
-            pullPower = RandomSetting;
+            UpHillPull = UnityEngine.Random.Range(0.001f, 0.1f);
+            pullPower = UnityEngine.Random.Range(0.001f, 0.2f); 
         }
         if (GUILayout.Button("Reset", Buttonss))
         {
             pullPower = 0.001f;
+            UpHillPull = 0.001f;
         }
         GUILayout.Space(5f);
         GUILayout.Label("Hand Options:");
@@ -119,13 +125,8 @@ public class Main : MonoBehaviour
 
         GUILayout.EndHorizontal();
         GUILayout.Label("PullMode: " + CurrentMode.ToString());
-        GUILayout.Label("Good Astra Client Speed Boost");
+        GUILayout.Label("Good Speed Boost");
         Speed = GUILayout.Toggle(Speed, "Speed Boost (Good For Set 0.025)");
-        if (Speed)
-        {
-            GTPlayer.Instance.jumpMultiplier = Normalmuilty;
-            GTPlayer.Instance.maxJumpSpeed = SpeedValue;
-        }
     }
 
 
@@ -140,6 +141,11 @@ public class Main : MonoBehaviour
     private void FixedUpdate()
     {
         PullMod();
+        if (Speed)
+        {
+            GTPlayer.Instance.jumpMultiplier = Normalmuilty;
+            GTPlayer.Instance.maxJumpSpeed = SpeedValue;
+        }
     }
 
     // PullMod
@@ -163,7 +169,7 @@ public class Main : MonoBehaviour
             if (shouldPull)
             {
                 Vector3 vel = GorillaTagger.Instance.rigidbody.linearVelocity;
-                GTPlayer.Instance.transform.position += new Vector3(vel.x * pullPower, 0f, vel.z * pullPower);
+                GTPlayer.Instance.transform.position += new Vector3(vel.x * pullPower, vel.y * UpHillPull, vel.z * pullPower);
             }
         }
 
