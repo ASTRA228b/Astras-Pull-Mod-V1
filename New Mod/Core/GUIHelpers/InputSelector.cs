@@ -11,7 +11,7 @@ public static class InputSelector
         "Right Trigger",
         "Left Trigger",
         "RightJoyStick (Hold)",
-        "LeftjoySrick (Hold)",
+        "LeftJoyStick (Hold)",
         "A Button",
         "B Button",
         "X Button",
